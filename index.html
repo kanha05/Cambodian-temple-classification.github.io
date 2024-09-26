@@ -7,137 +7,62 @@
     <link rel="icon" href="AngkorWat.png">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            background-color: #eef6f9;
             margin: 0;
             padding: 0;
-            color: #333;
         }
-
-        header {
-            background-color: #2b6cb0;
-            padding: 20px;
+        h1, h2, h3, h4, h5 {
             text-align: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin: 0;
-        }
-
         #main-content {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 20px;
             text-align: center;
         }
-
-        #upload-form {
-            margin-bottom: 20px;
-        }
-
-        input[type="file"] {
-            display: inline-block;
-            padding: 10px;
-            border: 2px solid #2b6cb0;
-            border-radius: 8px;
-            background-color: white;
-            color: #2b6cb0;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        input[type="file"]:hover {
-            background-color: #e1ecf4;
-        }
-
-        .button {
-            padding: 12px 24px;
-            background-color: #2b6cb0;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .button:hover {
-            background-color: #225a96;
-        }
-
         .temple-info {
-            padding: 20px;
+            padding: 10px 20px;
             background-color: #eef6f9;
             border-left: 6px solid #2b6cb0;
             border-radius: 4px;
             color: #2b6cb0;
-            margin: 30px auto;
+            margin-bottom: 25px;
             text-align: justify;
-            max-width: 900px;
         }
-
-        #uploaded-image img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h4 {
-            margin-top: 40px;
-            color: #2b6cb0;
-        }
-
         footer {
+            text-align: center;
+            padding: 10px;
             background-color: #2b6cb0;
             color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
+            position: fixed;
+            bottom: 0;
             width: 100%;
-            margin-top: 50px;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        @media (max-width: 768px) {
-            #main-content {
-                padding: 20px;
-            }
-
-            input[type="file"] {
-                font-size: 14px;
-                padding: 8px;
-            }
-
-            .button {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
+        .hidden {
+            visibility: hidden;
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <!-- Sidebar with temple information -->
+    <div id="sidebar">
         <h1>Cambodia Historical Temple Recognition</h1>
-    </header>
+        <img src="AngkorWat.png" alt="Angkor Wat" width="200px">
+        <h3>Accurately classify the temples in Cambodia. This helps a user to get to know temples in Cambodia clearly.</h3>
+    </div>
 
     <!-- Main content area -->
     <div id="main-content">
-        <h2>Upload a temple image to classify</h2>
+        <h2>Cambodia Historical Temple Recognition</h2>
 
-        <!-- Image upload form -->
+        <!-- Image upload and result display -->
         <form id="upload-form" enctype="multipart/form-data">
+            <h4>សូមដាក់រូបប្រាសាទនៅទីនេះ។</h4>
+            <h4>Please upload an image of a temple.</h4>
             <input type="file" id="file-input" accept="image/*">
         </form>
 
-        <!-- Placeholder for displaying uploaded image -->
+        <!-- Placeholder for image display -->
         <div id="uploaded-image"></div>
 
         <!-- Prediction result -->
@@ -165,18 +90,13 @@
                     // Display the uploaded image
                     const imageElement = document.createElement("img");
                     imageElement.src = e.target.result;
+                    imageElement.style.width = "100%";
                     document.getElementById("uploaded-image").innerHTML = "";
                     document.getElementById("uploaded-image").appendChild(imageElement);
 
-                    // Placeholder for displaying predictions
+                    // Placeholder for displaying predictions (use JavaScript for dynamic content)
                     const predictionResults = document.getElementById("prediction-results");
-                    predictionResults.innerHTML = `
-                        <p>Angkor Wat: 80.25%</p>
-                        <p>Bayon: 15.30%</p>
-                        <p>Koh Ker: 2.45%</p>
-                        <p>Prasat Sambor Prei Kuk: 1.00%</p>
-                        <p>Preah Vihear: 1.00%</p>
-                    `;
+                    predictionResults.innerHTML = "<p>Angkor Wat: 80.25%</p><p>Bayon: 15.30%</p><p>Koh Ker: 2.45%</p><p>Prasat Sambor Prei Kuk: 1.00%</p><p>Preah Vihear: 1.00%</p>";
 
                     // Display temple information dynamically based on the prediction
                     const templeInfo = document.getElementById("temple-info");
@@ -191,6 +111,5 @@
             }
         });
     </script>
-
 </body>
 </html>
